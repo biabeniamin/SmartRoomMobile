@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
+Room room = Room.GetInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void Alert(View v)
     {
-        Room.GetInstance().Alert(4);
+        //Room.GetInstance().Alert(4);
+        Room.GetInstance().StopMusic();
     }
 }

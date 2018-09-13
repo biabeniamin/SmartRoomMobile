@@ -22,4 +22,11 @@ public class Room {
 
         tcp.SendMessage(Arrays.asList(12,priority,0));
     }
+
+    public void StopMusic()
+    {
+        //from 0 to 4. 4 is the most important
+
+        tcp.SendMessage(Arrays.asList(10,0,0));
+    }
 }
