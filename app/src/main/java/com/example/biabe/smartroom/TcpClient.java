@@ -67,8 +67,7 @@ public class TcpClient {
                         //receives the message which the server sends back
                         mBufferIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                        if(3 > message.size())
-                        {
+                        if (3 > message.size()) {
                             Log.d(TAG, "Not enough parameters " + message);
                         }
                         mBufferOut.write(message.get(0));
@@ -76,34 +75,25 @@ public class TcpClient {
                         mBufferOut.write(message.get(2));
                         mBufferOut.flush();
 
-                        /*while (mRun) {
-                            try {
-                                mServerMessage = mBufferIn.readLine();
+                        try {
+                            String message = "";
+                            int charsRead = 0;
+                            char[] buffer = new char[500];
 
-                                if (mServerMessage != null) {
-                                    //call the method messageReceived from MyActivity class
-                                    //mMessageListener.messageReceived(mServerMessage);
-                                    int i = 5;
-                                    i++;
-
-
-                                }
-                                break;
-                            }
-                            catch (IOException ee)
-                            {
-
+                            while ((charsRead = mBufferIn.read(buffer)) != -1) {
+                                message += new String(buffer).substring(0, charsRead);
                             }
 
-                        }*/
-
+                            System.out.println(message);
+                        } catch (IOException e) {
+                            System.out.println("Error receiving response:  " + e.getMessage());
+                        }
 
                         //in this while the client listens for the messages sent by the server
 
 
-                        Log.d("RESPONSE FROM SERVER", "S: Received Message: '" + mServerMessage + "'");
-
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         Log.e("TCP", "S: Error", e);
                     } finally {
                         //the socket must be closed. It is not possible to reconnect to this socket
